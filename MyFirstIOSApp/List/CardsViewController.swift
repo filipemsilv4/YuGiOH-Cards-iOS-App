@@ -55,6 +55,19 @@ class CardsViewController: UIViewController {
         
     }
     
+    private func fetchRemotoMovies(){
+       let url = URL(string: "")
+    
+    
+    let request = URLRequest(url: <#T##URL#>)
+    
+    let task = URLSession.dataTask(with: request){ data, response, error in
+        code
+        
+      }
+    }
+    
+    
     // Adiciona os elementos na hierarquia de views
     private func addViewInHierarchy() {
         view.addSubview(titleLabel)

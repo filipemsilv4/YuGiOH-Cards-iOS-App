@@ -5,7 +5,7 @@
 //  Created by Paulo Filipe Moreira da Silva on 09/08/23.
 //
 
-struct Card {
+struct Card: Decodable{
     let name: String
     let description: String
     //let type: String

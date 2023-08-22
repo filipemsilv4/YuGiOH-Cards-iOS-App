@@ -52,7 +52,7 @@ class CardsViewController: UIViewController {
         
         addViewInHierarchy()
         setupConstraints()
-        fetchRemotoMovies()
+        fetchRemotoCards()
         
     }
     
@@ -79,7 +79,8 @@ class CardsViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    private func fetchRemotoMovies() {
+    // API
+    private func fetchRemotoCards() {
         let url = URL(string: "https://ygoprodeck.com/api-guide/")!
         
         
@@ -89,11 +90,12 @@ class CardsViewController: UIViewController {
             if let error { return }
             
             guard let cardsData = data else {return}
+        
+            print(String(data: cardsData, encoding: .utf8))
             
             let decoder = JSONDecoder()
             
-            guard let  remoteCards = try? decoder.decode(TMDBRemoteCads.self, from: cardsData) else
-            {return }
+            guard let  remoteCards = try? decoder.decode(TMDBRemoteCads.self, from: cardsData) else {return }
             
             print(remoteCards)
         }

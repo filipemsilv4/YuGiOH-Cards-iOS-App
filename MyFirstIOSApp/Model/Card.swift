@@ -1,16 +1,18 @@
 //
 //  Card.swift
 //  MyFirstIOSApp
-//
-//  Created by Paulo Filipe Moreira da Silva on 09/08/23.
-//
 
-struct Card: Decodable{
-    let name: String
-    let description: String
-    //let type: String
-    //let level: Int
-    let atk: Int
-    let def: Int
-    let imageURL: String
+
+struct YuGiOhResonse: Decodable {
+    struct Card: Decodable {
+        let name: String
+        let desc: String
+        let atk: Int?
+        let imageUrl: String?
+        let def: Int?
+        let type: String
+        let level: Int?
+    }
+
+    let data: [Card]
 }

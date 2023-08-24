@@ -4,13 +4,11 @@
 //
 //  Created by Paulo Filipe Moreira da Silva on 08/08/23.
 //
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,10 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        let navigation = UINavigationController(rootViewController: CardsViewController())
+        let navigation = UINavigationController(rootViewController: CardViewController())
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
-
 }
+
 

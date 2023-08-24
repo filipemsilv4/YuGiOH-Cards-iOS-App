@@ -8,6 +8,8 @@
 import UIKit
 
 class CardCell: UITableViewCell {
+    static let reuseIdentifier = "CardCell"
+
     private let horizontalStack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +69,6 @@ class CardCell: UITableViewCell {
         setupContentView()
         addViewsInHierarchy()
         setupConstraints()
-    
     }
     
     @available(*, unavailable)
@@ -75,17 +76,27 @@ class CardCell: UITableViewCell {
         return nil
     }
     
-    func configureCell(card: Card) {
+    func configureCell(card: YuGiOhResonse.Card) {
         cardName.text = card.name
-        cardDescription.text = card.description
-        cardAtk.text = "ATK: \(card.atk)"
-        cardDef.text = "DEF: \(card.def)"
-        
+        cardDescription.text = card.desc
+        cardAtk.text = "ATK: \(card.atk ?? 0)"
+        cardDef.text = "DEF: \(card.def ?? 0)"
+        // Load and set card image if applicable
+        if let imageUrlString = card.imageUrl, let imageUrl = URL(string: imageUrlString) {
+            URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.cardImage.image = image  
+                    }
+                }
+            }.resume()
+        } else {
+            cardImage.image = nil
+        }
     }
     
     private func setupContentView() {
         selectionStyle = .none
-        
     }
     
     private func addViewsInHierarchy() {
@@ -96,7 +107,6 @@ class CardCell: UITableViewCell {
         verticalStack.addArrangedSubview(cardDescription)
         verticalStack.addArrangedSubview(cardAtk)
         verticalStack.addArrangedSubview(cardDef)
-    
     }
     
     private func setupConstraints() {
@@ -110,5 +120,4 @@ class CardCell: UITableViewCell {
             cardImage.heightAnchor.constraint(equalToConstant: 120)
         ])
     }
-    
 }

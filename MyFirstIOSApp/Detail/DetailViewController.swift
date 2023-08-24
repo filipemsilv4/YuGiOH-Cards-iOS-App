@@ -9,39 +9,82 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var cardImage: UIImageView!
-    @IBOutlet weak var cardName: UILabel!
-    @IBOutlet weak var cardType: UILabel!
-    @IBOutlet weak var cardLevel: UILabel!
-    @IBOutlet weak var cardAtk: UILabel!
-    @IBOutlet weak var cardDef: UILabel!
-    @IBOutlet weak var cardDescription: UILabel!
-    
-    var card: Card!
-    
+    var card: YuGiOhResonse.Card!
+    private let cardImageView = UIImageView()
+    private let nameLabel = UILabel()
+    private let typeLabel = UILabel()
+    private let levelLabel = UILabel()
+    private let atkLabel = UILabel()
+    private let defLabel = UILabel()
+    private let descriptionLabel = UILabel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        // Do any additional setup after loading the view.
-        cardDescription.text = card.description
-//        cardDef.text = String(card.def)
-        cardDef.text = "DEF \(card.def)"
-        cardAtk.text = "ATK \(card.atk)"
-//        cardLevel.text = String(card.level)
-//        //cardType.text = card.type
-        cardName.text = card.name
-    
+        setupUI()
+        populateUI()
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupUI() {
+        title = card.name
+        view.backgroundColor = .white
+        setupImageView()
+        setupLabels()
     }
-    */
 
-}
+    private func setupImageView() {
+        cardImageView.translatesAutoresizingMaskIntoConstraints = false
+        cardImageView.contentMode = .scaleAspectFit
+        cardImageView.backgroundColor = .systemGray
+        view.addSubview(cardImageView)
+
+        NSLayoutConstraint.activate([
+            cardImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            cardImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cardImageView.widthAnchor.constraint(equalToConstant: 120),
+            cardImageView.heightAnchor.constraint(equalToConstant: 180)
+        ])
+    }
+
+    private func setupLabels() {
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        typeLabel.textColor = .systemGray
+        levelLabel.textColor = .systemGray
+        atkLabel.textColor = .systemGray
+        defLabel.textColor = .systemGray
+        descriptionLabel.numberOfLines = 0
+
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, typeLabel, levelLabel, atkLabel, defLabel, descriptionLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: cardImageView.bottomAnchor, constant: 16),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        ])
+    }
+
+    private func populateUI() {
+        nameLabel.text = card.name
+        typeLabel.text = "Type: \(card.type)"
+        if let level = card.level {
+            levelLabel.text = "Level: \(level)"
+        }
+        if let atk = card.atk {
+            atkLabel.text = "ATK: \(atk)"
+        }
+        if let def = card.def {
+            defLabel.text = "DEF: \(def)"
+        }
+        descriptionLabel.text = card.desc
+            
+            if let imageUrl = card.imageUrl {
+                if let imageData = try? Data(contentsOf: URL(string: imageUrl)!) {
+                    cardImageView.image = UIImage(data: imageData)
+                }
+            }
+        }
+    }

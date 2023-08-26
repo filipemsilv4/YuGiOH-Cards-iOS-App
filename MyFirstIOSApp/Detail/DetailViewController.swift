@@ -26,14 +26,13 @@ class DetailViewController: UIViewController {
 
     private func setupUI() {
         title = card.name
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setupImageView()
         setupLabels()
     }
 
     private func setupImageView() {
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
-        cardImageView.contentMode = .scaleAspectFit
         cardImageView.backgroundColor = .systemGray
         view.addSubview(cardImageView)
 

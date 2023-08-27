@@ -22,13 +22,28 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        // Do any additional setup after loading the view.
-        cardDescription.text = card.description
-//        cardDef.text = String(card.def)
-        cardDef.text = "DEF \(card.def)"
-        cardAtk.text = "ATK \(card.atk)"
-//        cardLevel.text = String(card.level)
-//        //cardType.text = card.type
+        // Do any additional setup after loading the view.
+        cardDescription.text = card.description ?? ""
+
+        if let def = card.def {
+            cardDef.text = "DEF \(def)"
+        } else {
+            cardDef.text = ""
+        }
+
+        if let atk = card.atk {
+            cardAtk.text = "ATK \(atk)"
+        } else {
+            cardAtk.text = ""
+        }
+        
+        if let level = card.level {
+            cardLevel.text = "LEVEL \(level)"
+        } else {
+            cardLevel.text = ""
+        }
+        
+        cardType.text = card.type
         cardName.text = card.name
     
     }

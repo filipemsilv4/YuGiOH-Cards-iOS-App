@@ -11,15 +11,8 @@ class CardsViewController: UIViewController {
     
     // https://i.pinimg.com/474x/29/36/fe/2936feab43fe2be5e7b0cd4c0025658c.jpg
     private var cards: [Card] = [
-        .init(name: "Dark Magician", description: "The ultimate wizard in terms of attack and defense.", atk: 2500, def: 2100, imageURL: "https://storage.googleapis.com/ygoprodeck.com/pics/46986414.jpg"),
-        .init(name: "Blue-Eyes White Dragon", description: "This legendary dragon is a powerful engine of destruction. This legendary dragon is a powerful engine of destruction. This legendary dragon is a powerful engine of destruction.", atk: 3000, def: 2500, imageURL: "https://storage.googleapis.com/ygoprodeck.com/pics/89631139.jpg"),
-        .init(name: "Red-Eyes Black Dragon", description: "A ferocious dragon with a deadly attack.", atk: 2400, def: 2000, imageURL: "https://storage.googleapis.com/ygoprodeck.com/pics/74677422.jpg"),
-        .init(name: "Dark Magician", description: "The ultimate wizard in terms of attack and defense.", atk: 2500, def: 2100, imageURL: "https://storage.googleapis.com/ygoprodeck.com/pics/46986414.jpg"),
-        .init(name: "Blue-Eyes White Dragon", description: "This legendary dragon is a powerful engine of destruction. This legendary dragon is a powerful engine of destruction. This legendary dragon is a powerful engine of destruction.", atk: 3000, def: 2500, imageURL: "https://storage.googleapis.com/ygoprodeck.com/pics/89631139.jpg"),
-        .init(name: "Red-Eyes Black Dragon", description: "A ferocious dragon with a deadly attack.", atk: 2400, def: 2000, imageURL: "https://storage.googleapis.com/ygoprodeck.com/pics/74677422.jpg"),
-        .init(name: "Dark Magician", description: "The ultimate wizard in terms of attack and defense.", atk: 2500, def: 2100, imageURL: "https://storage.googleapis.com/ygoprodeck.com/pics/46986414.jpg"),
-        .init(name: "Blue-Eyes White Dragon", description: "This legendary dragon is a powerful engine of destruction. This legendary dragon is a powerful engine of destruction. This legendary dragon is a powerful engine of destruction.", atk: 3000, def: 2500, imageURL: "https://storage.googleapis.com/ygoprodeck.com/pics/89631139.jpg"),
-        .init(name: "Red-Eyes Black Dragon", description: "A ferocious dragon with a deadly attack.", atk: 2400, def: 2000, imageURL: "https://storage.googleapis.com/ygoprodeck.com/pics/74677422.jpg")
+        .init(name: "Dark Magician", description: "The ultimate wizard in terms of attack and defense.", type: "Spellcaster", level: 7, atk: 2000, def: 2100, imageURL: "https://i.pinimg.com/474x/29/36/fe/2936feab43fe2be5e7b0cd4c0025658c.jpg"),
+        .init(name: "aaa", description: nil, type: "tipo", level: nil, atk: nil, def: nil, imageURL: "https://i.pinimg.com/474x/29/36/fe/2936feab43fe2be5e7b0cd4c0025658c.jpg"),
     ]
     
     // Título

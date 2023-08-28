@@ -77,7 +77,7 @@ class CardCell: UITableViewCell {
     
     func configureCell(card: Card) {
         cardName.text = card.name
-        cardDescription.text = card.description ?? ""
+        cardDescription.text = card.desc ?? ""
         if let atk = card.atk {
             cardAtk.text = "ATK: \(atk)"
         } else {

@@ -9,11 +9,7 @@ import UIKit
 
 class CardsViewController: UIViewController {
     
-    // https://i.pinimg.com/474x/29/36/fe/2936feab43fe2be5e7b0cd4c0025658c.jpg
-    private var cards: [Card] = [
-        .init(name: "Dark Magician", description: "The ultimate wizard in terms of attack and defense.", type: "Spellcaster", level: 7, atk: 2000, def: 2100, imageURL: "https://i.pinimg.com/474x/29/36/fe/2936feab43fe2be5e7b0cd4c0025658c.jpg"),
-        .init(name: "aaa", description: nil, type: "tipo", level: nil, atk: nil, def: nil, imageURL: "https://i.pinimg.com/474x/29/36/fe/2936feab43fe2be5e7b0cd4c0025658c.jpg"),
-    ]
+    private var cards: [Card] = []
     
     // Título
     private let titleLabel: UILabel = {
@@ -45,7 +41,7 @@ class CardsViewController: UIViewController {
         
         addViewInHierarchy()
         setupConstraints()
-        
+        fetchRemoteCards()
     }
     
     // Adiciona os elementos na hierarquia de views
@@ -70,6 +66,57 @@ class CardsViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func fetchRemoteCards() {
+        
+        guard let url = URL(string: "https://db.ygoprodeck.com/api/v7/cardinfo.php?language=pt") else {
+            print("Error: Cannot create URL")
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error fetching data: \(error)")
+                return
+            }
+
+            guard let cardsData = data else {
+                print("No data received")
+                return
+            }
+            
+            // DEBUG: Print first 10000 characters from received data to terminal (temporary)
+            let dataAsString = String(data: cardsData, encoding: .utf8)
+            print(dataAsString?.prefix(10000) ?? "Data could not be printed")
+            // DEBUG: End
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                
+                let response = try decoder.decode(RemoteCards.self, from: cardsData)
+                self.cards = response.data
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+                // DEBUG: Print first card to terminal (temporary)
+                print("Remote cards: \(self.cards.count)")
+                print(self.cards[0])
+                // DEBUG: End
+                
+            
+            } catch {
+                print("Error decoding data: \(error)")
+            }
+                        
+        }
+        
+        task.resume()
     }
 }
 

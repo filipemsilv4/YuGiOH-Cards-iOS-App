@@ -5,12 +5,17 @@
 //  Created by Paulo Filipe Moreira da Silva on 09/08/23.
 //
 
-struct Card {
+struct Card: Decodable {
     let name: String
-    let description: String?
     let type: String
-    let level: Int?
+    let desc: String?
     let atk: Int?
     let def: Int?
-    let imageURL: String
+    let level: Int?
+    let cardImages: [CardImages]?
+    
+    struct CardImages: Decodable {
+        let imageUrl: String?
+        let imageUrlCropped: String?
+    }
 }

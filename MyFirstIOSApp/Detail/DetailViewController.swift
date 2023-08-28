@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        cardDescription.text = card.description ?? ""
+        cardDescription.text = card.desc ?? ""
 
         if let def = card.def {
             cardDef.text = "DEF \(def)"

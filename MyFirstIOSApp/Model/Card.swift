@@ -15,7 +15,8 @@ struct Card: Decodable {
     let cardImages: [CardImages]?
     
     struct CardImages: Decodable {
-        let imageUrl: String?
+        //let imageUrl: String?
+        let imageUrlSmall: String?
         let imageUrlCropped: String?
     }
 }

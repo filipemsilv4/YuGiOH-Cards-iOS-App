@@ -27,6 +27,7 @@ class DetailViewController: UIViewController {
     }
     
     func populateDetailScreen(with card: Card){
+        cardImage.backgroundColor = findCardBackgroundColor(type: card.type)
         cardDescription.text = card.desc ?? ""
         
         // DEF
@@ -52,7 +53,7 @@ class DetailViewController: UIViewController {
         cardName.text = card.name
         
         //Image
-        cardImage.download(path: card.cardImages?.first?.imageUrlCropped ?? "")
+        cardImage.download(path: card.cardImages?.first?.imageUrlCropped ?? "", animationDuration: 0.2)
     }
     
 

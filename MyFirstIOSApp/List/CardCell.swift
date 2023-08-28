@@ -76,9 +76,10 @@ class CardCell: UITableViewCell {
     }
     
     func configureCell(card: Card) {
+        cardImage.backgroundColor = findCardBackgroundColor(type: card.type)
         cardName.text = card.name
         cardDescription.text = card.desc ?? ""
-        cardImage.download(path: card.cardImages?.first?.imageUrl ?? "")
+        cardImage.download(path: card.cardImages?.first?.imageUrlSmall ?? "")
         
         if let atk = card.atk {
             cardAtk.text = "ATK: \(atk)"

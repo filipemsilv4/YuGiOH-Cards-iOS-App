@@ -18,6 +18,7 @@
 		D471AFAF2A83123F003A2395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D471AFAD2A83123F003A2395 /* LaunchScreen.storyboard */; };
 		D47448052A8A6AC100154A47 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47448042A8A6AC100154A47 /* CardCell.swift */; };
 		D4E3F7142A9CEC8B002D2626 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E3F7132A9CEC8B002D2626 /* UIImageView+Download.swift */; };
+		D4E3F7162A9D05A3002D2626 /* CardColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E3F7152A9D05A3002D2626 /* CardColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		D471AFB02A83123F003A2395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D47448042A8A6AC100154A47 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		D4E3F7132A9CEC8B002D2626 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
+		D4E3F7152A9D05A3002D2626 /* CardColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				D43C06A22A8460F400C4FD3A /* Card.swift */,
 				D41AB1CA2A9CDA75002D2255 /* RemoteCards.swift */,
+				D4E3F7152A9D05A3002D2626 /* CardColor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				D4E3F7142A9CEC8B002D2626 /* UIImageView+Download.swift in Sources */,
 				D443647A2A8BFBA700B461AD /* DetailViewController.swift in Sources */,
 				D471AFA52A83123D003A2395 /* SceneDelegate.swift in Sources */,
+				D4E3F7162A9D05A3002D2626 /* CardColor.swift in Sources */,
 				D43C06A32A8460F400C4FD3A /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

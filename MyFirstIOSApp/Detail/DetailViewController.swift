@@ -23,29 +23,36 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        populateDetailScreen(with: card)
+    }
+    
+    func populateDetailScreen(with card: Card){
         cardDescription.text = card.desc ?? ""
-
+        
+        // DEF
         if let def = card.def {
             cardDef.text = "DEF \(def)"
         } else {
             cardDef.text = ""
         }
-
+        // ATK
         if let atk = card.atk {
             cardAtk.text = "ATK \(atk)"
         } else {
             cardAtk.text = ""
         }
-        
+        // LVL
         if let level = card.level {
             cardLevel.text = "LEVEL \(level)"
         } else {
             cardLevel.text = ""
         }
-        
+        // Type and Name
         cardType.text = card.type
         cardName.text = card.name
-    
+        
+        //Image
+        cardImage.download(path: card.cardImages?.first?.imageUrlCropped ?? "")
     }
     
 

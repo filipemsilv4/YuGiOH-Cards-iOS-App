@@ -17,6 +17,7 @@
 		D471AFAC2A83123F003A2395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D471AFAB2A83123F003A2395 /* Assets.xcassets */; };
 		D471AFAF2A83123F003A2395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D471AFAD2A83123F003A2395 /* LaunchScreen.storyboard */; };
 		D47448052A8A6AC100154A47 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47448042A8A6AC100154A47 /* CardCell.swift */; };
+		D4E3F7142A9CEC8B002D2626 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E3F7132A9CEC8B002D2626 /* UIImageView+Download.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D471AFAE2A83123F003A2395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D471AFB02A83123F003A2395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D47448042A8A6AC100154A47 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		D4E3F7132A9CEC8B002D2626 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		D471AFA12A83123D003A2395 /* MyFirstIOSApp */ = {
 			isa = PBXGroup;
 			children = (
+				D4E3F7122A9CEC60002D2626 /* Extensions */,
 				D44364762A8BF67900B461AD /* Detail */,
 				D44364752A8BF63500B461AD /* Model */,
 				D44364742A8BF5FC00B461AD /* List */,
@@ -101,6 +104,14 @@
 				D471AFB02A83123F003A2395 /* Info.plist */,
 			);
 			path = MyFirstIOSApp;
+			sourceTree = "<group>";
+		};
+		D4E3F7122A9CEC60002D2626 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4E3F7132A9CEC8B002D2626 /* UIImageView+Download.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +189,7 @@
 				D41AB1CB2A9CDA75002D2255 /* RemoteCards.swift in Sources */,
 				D471AFA72A83123D003A2395 /* CardsViewController.swift in Sources */,
 				D471AFA32A83123D003A2395 /* AppDelegate.swift in Sources */,
+				D4E3F7142A9CEC8B002D2626 /* UIImageView+Download.swift in Sources */,
 				D443647A2A8BFBA700B461AD /* DetailViewController.swift in Sources */,
 				D471AFA52A83123D003A2395 /* SceneDelegate.swift in Sources */,
 				D43C06A32A8460F400C4FD3A /* Card.swift in Sources */,

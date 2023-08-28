@@ -88,9 +88,9 @@ class CardsViewController: UIViewController {
                 return
             }
             
-            // DEBUG: Print first 10000 characters from received data to terminal (temporary)
-            let dataAsString = String(data: cardsData, encoding: .utf8)
-            print(dataAsString?.prefix(10000) ?? "Data could not be printed")
+            // DEBUG: Print first 10000 characters from received data to terminal
+//            let dataAsString = String(data: cardsData, encoding: .utf8)
+//            print(dataAsString?.prefix(10000) ?? "Data could not be printed")
             // DEBUG: End
             
             do {
@@ -104,9 +104,9 @@ class CardsViewController: UIViewController {
                     self.tableView.reloadData()
                 }
                 
-                // DEBUG: Print first card to terminal (temporary)
-                print("Remote cards: \(self.cards.count)")
-                print(self.cards[0])
+                // DEBUG: Print first card to terminal
+//                print("Remote cards: \(self.cards.count)")
+//                print(self.cards[0])
                 // DEBUG: End
                 
             

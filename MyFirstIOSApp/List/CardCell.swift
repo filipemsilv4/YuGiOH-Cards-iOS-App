@@ -78,6 +78,8 @@ class CardCell: UITableViewCell {
     func configureCell(card: Card) {
         cardName.text = card.name
         cardDescription.text = card.desc ?? ""
+        cardImage.download(path: card.cardImages?.first?.imageUrl ?? "")
+        
         if let atk = card.atk {
             cardAtk.text = "ATK: \(atk)"
         } else {

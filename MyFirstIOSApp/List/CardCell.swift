@@ -28,7 +28,6 @@ class CardCell: UITableViewCell {
     
     private let verticalStack: UIStackView = {
         let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         return stack
     }()
@@ -118,7 +117,6 @@ class CardCell: UITableViewCell {
             horizontalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             cardImage.widthAnchor.constraint(equalToConstant: 80),
-            cardImage.heightAnchor.constraint(equalToConstant: 120)
         ])
     }
     

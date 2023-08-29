@@ -27,6 +27,7 @@ class CardsViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         //tableView.separatorStyle = .none
+        tableView.rowHeight = 136
         return tableView
     }()
     

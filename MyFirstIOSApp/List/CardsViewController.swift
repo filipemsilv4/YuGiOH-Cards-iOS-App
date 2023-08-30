@@ -11,6 +11,13 @@ class CardsViewController: UIViewController {
     
     private var cards: [Card] = []
     
+    // Loading
+    private let activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .large)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     // Título
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -49,6 +56,7 @@ class CardsViewController: UIViewController {
     private func addViewInHierarchy() {
         view.addSubview(titleLabel)
         view.addSubview(tableView)
+        view.addSubview(activityIndicator)
     }
     
     // Configuração das constraints
@@ -67,9 +75,15 @@ class CardsViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
     }
     
     private func fetchRemoteCards() {
+        activityIndicator.startAnimating()
         
         guard let url = URL(string: "https://db.ygoprodeck.com/api/v7/cardinfo.php?language=pt") else {
             print("Error: Cannot create URL")
@@ -83,15 +97,15 @@ class CardsViewController: UIViewController {
                 print("Error fetching data: \(error)")
                 return
             }
-
+            
             guard let cardsData = data else {
                 print("No data received")
                 return
             }
             
             // DEBUG: Print first 10000 characters from received data to terminal
-//            let dataAsString = String(data: cardsData, encoding: .utf8)
-//            print(dataAsString?.prefix(10000) ?? "Data could not be printed")
+            //            let dataAsString = String(data: cardsData, encoding: .utf8)
+            //            print(dataAsString?.prefix(10000) ?? "Data could not be printed")
             // DEBUG: End
             
             do {
@@ -102,19 +116,20 @@ class CardsViewController: UIViewController {
                 self.cards = response.data
                 
                 DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
                     self.tableView.reloadData()
                 }
                 
                 // DEBUG: Print first card to terminal
-//                print("Remote cards: \(self.cards.count)")
-//                print(self.cards[0])
+                //                print("Remote cards: \(self.cards.count)")
+                //                print(self.cards[0])
                 // DEBUG: End
                 
-            
+                
             } catch {
                 print("Error decoding data: \(error)")
             }
-                        
+            
         }
         
         task.resume()

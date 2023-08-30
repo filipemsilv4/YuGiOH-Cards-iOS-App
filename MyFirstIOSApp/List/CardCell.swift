@@ -78,7 +78,7 @@ class CardCell: UITableViewCell {
         cardImage.backgroundColor = findCardBackgroundColor(type: card.type)
         cardName.text = card.name
         cardDescription.text = card.desc ?? ""
-        cardImage.download(path: card.cardImages?.first?.imageUrlSmall ?? "")
+        cardImage.download(path: card.cardImages?.first?.imageUrlSmall ?? "", animationDuration: 1.0)
         
         if let atk = card.atk {
             cardAtk.text = "ATK: \(atk)"

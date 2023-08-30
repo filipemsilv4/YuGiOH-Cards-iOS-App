@@ -11,7 +11,7 @@ class CardsViewController: UIViewController {
     
     private var cards: [Card] = []
     
-    // Título
+    // Title
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +22,7 @@ class CardsViewController: UIViewController {
         return label
     }()
     
-    // Tabela
+    // Table
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +31,7 @@ class CardsViewController: UIViewController {
         return tableView
     }()
     
-    // Método chamado quando a view é carregada
+    // This method is called when the view is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,22 +45,22 @@ class CardsViewController: UIViewController {
         fetchRemoteCards()
     }
     
-    // Adiciona os elementos na hierarquia de views
+    // Add elements to view hierarchy
     private func addViewInHierarchy() {
         view.addSubview(titleLabel)
         view.addSubview(tableView)
     }
     
-    // Configuração das constraints
+    // Constraints configuration
     private func setupConstraints() {
-        // Título
+        // Title constraints
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
         
-        // Tabela
+        // Table constraints
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -123,7 +123,7 @@ class CardsViewController: UIViewController {
 
 
 extension CardsViewController: UITableViewDataSource, UITableViewDelegate {
-    // Configuração das células da tabela
+    // Table cell configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CardCell()
         let card = cards[indexPath.row]
@@ -131,11 +131,12 @@ extension CardsViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    // Quantidade de linhas na tabela
+    // Number of rows in table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cards.count
     }
     
+    // When a cell is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Detail", bundle: Bundle(for: DetailViewController.self))
         let detailViewController = storyboard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
@@ -144,3 +145,6 @@ extension CardsViewController: UITableViewDataSource, UITableViewDelegate {
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
+
+
+// I hope it works

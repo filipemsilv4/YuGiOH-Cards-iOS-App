@@ -18,11 +18,11 @@ class CardsViewController: UIViewController {
     override var navigationItem: UINavigationItem {
         let navigationItem = UINavigationItem()
         navigationItem.searchController = searchController
-        navigationItem.title = "Cards de YuGiOH"
+        navigationItem.title = "YuGiOH Cards".localized()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Voltar", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "All cards".localized(), style: .plain, target: nil, action: nil)
                 
         return navigationItem
     }
@@ -70,7 +70,7 @@ class CardsViewController: UIViewController {
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Cards"
+        searchController.searchBar.placeholder = "Search cards".localized()
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
@@ -108,8 +108,7 @@ class CardsViewController: UIViewController {
     
     private func fetchRemoteCards() {
         activityIndicator.startAnimating()
-        
-        guard let url = URL(string: "https://db.ygoprodeck.com/api/v7/cardinfo.php?language=pt") else {
+        guard let url = URL(string: "https://db.ygoprodeck.com/api/v7/cardinfo.php".localized()) else {
             print("Error: Cannot create URL")
             return
         }

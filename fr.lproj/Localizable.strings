@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  MyFirstIOSApp
+
+  Created by Paulo Filipe Moreira da Silva on 31/08/23.
+  
+*/
+
+// English to French translation file
+"YuGiOH Cards" = "Cartes YuGiOh";
+"Search cards" = "Rechercher des cartes";
+"https://db.ygoprodeck.com/api/v7/cardinfo.php" = "https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr";
+"All cards" = "Toutes les cartes";
+
+

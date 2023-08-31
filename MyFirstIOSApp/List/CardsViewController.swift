@@ -10,6 +10,31 @@ import UIKit
 class CardsViewController: UIViewController {
     
     private var cards: [Card] = []
+    private var filteredCards: [Card] = []
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    // Title and search bar
+    override var navigationItem: UINavigationItem {
+        let navigationItem = UINavigationItem()
+        navigationItem.searchController = searchController
+        navigationItem.title = "Cards de YuGiOH"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Voltar", style: .plain, target: nil, action: nil)
+                
+        return navigationItem
+    }
+    
+    // Search bar
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    
     
     // Loading
     private let activityIndicator: UIActivityIndicatorView = {
@@ -18,31 +43,37 @@ class CardsViewController: UIViewController {
         return view
     }()
     
-    // Title
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 36)
-        label.numberOfLines = 0
-        label.text = "Cards de YuGiOH"
-        return label
-    }()
-    
     // Table
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        //tableView.separatorStyle = .none
         tableView.rowHeight = 136
         return tableView
     }()
     
+    // Filter cards by name
+    func filterContentForSearchText(_ searchText: String) {
+        if searchText.isEmpty {
+            filteredCards = cards
+        } else {
+            filteredCards = cards.filter { (card: Card) -> Bool in
+                return card.name.lowercased().contains(searchText.lowercased())
+            }
+        }
+        tableView.reloadData()
+    }
+    
     // This method is called when the view is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .systemBackground
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Cards"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -54,23 +85,16 @@ class CardsViewController: UIViewController {
     
     // Add elements to view hierarchy
     private func addViewInHierarchy() {
-        view.addSubview(titleLabel)
         view.addSubview(tableView)
         view.addSubview(activityIndicator)
     }
     
     // Constraints configuration
     private func setupConstraints() {
-        // Title constraints
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-        ])
-        
         // Table constraints
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            //tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -141,24 +165,43 @@ extension CardsViewController: UITableViewDataSource, UITableViewDelegate {
     // Table cell configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CardCell()
-        let card = cards[indexPath.row]
-        cell.configureCell(card: card)
+        
+        if isFiltering {
+            cell.configureCell(card: filteredCards[indexPath.row])
+        } else {
+            cell.configureCell(card: cards[indexPath.row])
+        }
+        
         return cell
     }
     
     // Number of rows in table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cards.count
+        if isFiltering {
+            return filteredCards.count
+        }
+        return cards.count
     }
     
     // When a cell is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Detail", bundle: Bundle(for: DetailViewController.self))
         let detailViewController = storyboard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
-        detailViewController.card = cards[indexPath.row]
+        if isFiltering {
+            detailViewController.card = filteredCards[indexPath.row]
+        } else {
+            detailViewController.card = cards[indexPath.row]
+        }
         
         navigationController?.pushViewController(detailViewController, animated: true)
     }
+}
+
+extension CardsViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+      let searchBar = searchController.searchBar
+      filterContentForSearchText(searchBar.text!)
+  }
 }
 
 

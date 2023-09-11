@@ -4,4 +4,11 @@
 [![fr](https://img.shields.io/badge/lang-fr-yellow.svg)](https://github.com/filipemsilv4/YuGiOH-Cards-iOS-App/blob/master/README.fr.md)
 
 
-Simple YuGiOh card viewer iOS app made with Swift and UIKit. I promise that this REAME will be better in the future.
+This repository contains the source code of a simple iOS application for viewing Yu-Gi-Oh cards, created for educational and learning purposes.
+
+The application offers the following features:
+- Viewing basic card information, including name, type, attribute, level, ATK, and DEF.
+- Card search by name.
+- Support for English, Portuguese, and French languages.
+
+The application utilizes the YGOPRODeck API to access Yu-Gi-Oh card data. The main screen was developed programmatically, while the details screen was created using Storyboard.
